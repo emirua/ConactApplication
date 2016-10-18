@@ -1,51 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginStart="@dimen/activity_horizontal_margin"
-    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/small_margin"
-    android:layout_marginBottom="@dimen/small_margin"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+    android:layout_marginStart="@dimen/activity_horizontal_margin">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <android.support.v7.widget.CardView
-            android:layout_margin="@dimen/activity_horizontal_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             app:cardUseCompatPadding="true">
+
             <ImageView
-                android:layout_width="@dimen/contact_image_size"
-                android:layout_height="@dimen/contact_image_size"
-                android:src="@android:mipmap/sym_def_app_icon"
-                />
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
+                android:src="@android:mipmap/sym_def_app_icon" />
         </android.support.v7.widget.CardView>
+
         <LinearLayout
-            android:layout_gravity="center"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/contact_name_text_view"
-                android:textAppearance="?android:textAppearanceLarge"
-                android:text="Nombre"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre"
+                android:textAppearance="?android:textAppearanceLarge" />
 
 
             <TextView
-                android:textAppearance="?android:textAppearanceMedium"
+                android:id="@+id/contact_number_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/contact_number_text_view"
-                android:text="555555555"/>
+                android:text="555555555"
+                android:textAppearance="?android:textAppearanceMedium" />
 
         </LinearLayout>
 
@@ -53,13 +51,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="@dimen/small_margin"
             android:background="@color/primary_light"
             android:padding="@dimen/activity_horizontal_margin"
-            android:layout_margin="@dimen/small_margin"
-            android:src="@drawable/ic_call_black_24dp"/>
+            android:src="@drawable/ic_call_black_24dp" />
 
     </LinearLayout>
-
-
 
 </android.support.v7.widget.CardView>
