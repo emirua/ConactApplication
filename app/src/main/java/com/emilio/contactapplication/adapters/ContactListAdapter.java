@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.emilio.contactapplication.R;
@@ -24,6 +25,15 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     private final Context context;
     private List<Contact> contacts;
     private LayoutInflater layoutInflater;
+    private OnCallButtonListener listener;
+
+    public interface OnCallButtonListener {
+        void onClick(int position);
+    }
+
+    public void setOnCallButtonListener(OnCallButtonListener listener){
+        this.listener = listener;
+    }
 
     public ContactListAdapter(Context context, List<Contact> contacts) {
         this.context = context;
@@ -33,7 +43,10 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(layoutInflater.inflate(R.layout.contacts_list_item, parent));
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.contacts_list_item, parent, false);
+        // set the view's size, margins, paddings and layout parameters
+        return new ViewHolder(v);
     }
 
 
@@ -43,6 +56,10 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     }
 
+
+    public Contact getContact(int position){
+        return contacts.get(position);
+    }
 
     @Override
     public int getItemCount() {
@@ -55,6 +72,8 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         TextView contactNameTextView;
         @BindView(R.id.contact_number_text_view)
         TextView contactNumberTextView;
+        @BindView(R.id.call_contact_button)
+        ImageView callContactButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -66,6 +85,15 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         public void setData(Contact contact) {
             contactNameTextView.setText(contact.getName());
             contactNumberTextView.setText(String.valueOf(contact.getNumber()));
+            callContactButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener!=null){
+                        listener.onClick(getLayoutPosition());
+                    }
+                }
+            });
+
 
         }
     }

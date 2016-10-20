@@ -6,12 +6,28 @@ package com.emilio.contactapplication.data.models;
 
 public class Contact {
     private String name;
-    private long number;
+    private String number;
     private String image;
 
-    public Contact(String name, long number, String image) {
+    public Contact(String name, String number, String image) {
         this.name = name;
         this.number = number;
+        this.image = image;
+    }
+
+    public Contact() {
+
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -19,7 +35,7 @@ public class Contact {
         return name;
     }
 
-    public long getNumber() {
+    public String getNumber() {
         return number;
     }
 
