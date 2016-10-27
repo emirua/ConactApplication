@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -48,9 +49,39 @@ public class ContactsListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contacts_list, container, false);
         ButterKnife.bind(this, view);
+        loadToolbar();
         loadRecyclerView();
         loadListeners();
         return view;
+    }
+
+    private void loadToolbar() {
+        fragmentContactListToolbar.setTitle(getActivity().getString(R.string.contacts));
+        fragmentContactListToolbar.setNavigationIcon(R.drawable.ic_toolbar);
+        fragmentContactListToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "Adios", Toast.LENGTH_LONG).show();
+                getActivity().onBackPressed();
+            }
+        });
+        fragmentContactListToolbar.inflateMenu(R.menu.main_menu);
+        fragmentContactListToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.add_contact:
+                        addContact();
+                }
+                return true;
+            }
+        });
+    }
+
+    private void addContact() {
+        Contact contact = new Contact("Alguien", "55555235314", "");
+        contacts.add(contact);
+        contactListAdapter.notifyDataSetChanged();
     }
 
 
