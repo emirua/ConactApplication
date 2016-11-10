@@ -1,11 +1,15 @@
 package com.emilio.contactapplication.data.models;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by Emilio on 17/10/2016.
  */
 
-public class Contact {
+public class Contact extends RealmObject {
     private String name;
+    @PrimaryKey
     private String number;
     private String image;
 

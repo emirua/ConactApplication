@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (havePermits())
-        getSupportFragmentManager().beginTransaction().add(R.id.activity_main_container, new ContactsListFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_container, new ContactsListFragment()).commit();
     }
 
     private boolean havePermits() {
